@@ -3,12 +3,12 @@ import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "demo-key",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "naura-events.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "naura-events",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "naura-events.appspot.com",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "123456789",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:123456789:web:abcdef"
+  apiKey: "AIzaSyB76q192Xs4TOW8IUOFqOnr8PTmbtJRKZg",
+  authDomain: "naura-events.firebaseapp.com",
+  projectId: "naura-events",
+  storageBucket: "naura-events.firebasestorage.app",
+  messagingSenderId: "919808575366",
+  appId: "1:919808575366:web:118e61479c369040838e07"
 };
 
 const app = initializeApp(firebaseConfig);
