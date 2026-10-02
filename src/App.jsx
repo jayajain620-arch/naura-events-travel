@@ -38,7 +38,17 @@ export default function App() {
       status: 'New',
       createdAt: serverTimestamp()
     });
-
+    await fetch('/api/send-enquiry-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        requirementId: generatedId,
+        ...formData,
+        services: selectedServices
+      })
+    });
     setRequirementId(generatedId);
     setSubmitted(true);
   } catch (error) {
