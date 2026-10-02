@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { db } from './firebase';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { 
   Building2, Plane, Calendar, Gift, ShoppingBag, Box, MapPin, CheckCircle, 
   Phone, Mail, MessageSquare, ArrowRight, Lock, LogOut, Search, Filter, 
@@ -23,12 +25,27 @@ export default function App() {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const generatedId = 'NAU-2026-' + Math.floor(100000 + Math.random() * 900000);
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const generatedId = 'NAU-2026-' + Math.floor(100000 + Math.random() * 900000);
+
+  try {
+    await setDoc(doc(db, 'enquiries', generatedId), {
+      requirementId: generatedId,
+      ...formData,
+      services: selectedServices,
+      status: 'New',
+      createdAt: serverTimestamp()
+    });
+
     setRequirementId(generatedId);
     setSubmitted(true);
-  };
+  } catch (error) {
+    console.error(error);
+    alert('Something went wrong. Please try again.');
+  }
+};
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F8FAF9] text-[#17212B]">
